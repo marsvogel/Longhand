@@ -56,6 +56,10 @@ identifier is changed so the copy does not collide with an installed Longhand.
 Never commit those edits — regenerate the copy when a shot needs refreshing, and
 strip PNG metadata before committing the result.
 
+`docs/social-preview.png` is the GitHub social card: 1280×640, composed from the
+app icon, the tagline, and the same waveform formula the app draws, over a dark
+gradient. GitHub has no API for it — upload it under Settings ▸ Social preview.
+
 ## Comments
 
 Comments carry the why, not the what. A comment exists where a decision needs a
