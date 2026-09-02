@@ -1,0 +1,124 @@
+# Every rule SwiftLint has is on. Each exception below names the reason it
+# exists: a rule that contradicts another rule, contradicts the Swift idiom, or
+# contradicts something this project does on purpose.
+
+included:
+  - Longhand
+  - Packages
+
+opt_in_rules:
+  - all
+
+# State first, behaviour second, teardown last. Within the state the order is
+# free: CodingKeys reads best below the properties it encodes, and in SwiftUI
+# `body` is a property, so a separate initializer slot would push init below it.
+type_contents_order:
+  order:
+    - [case, type_alias, associated_type, subtype, type_property, instance_property, ib_inspectable, ib_outlet, initializer]
+    - [type_method, view_life_cycle_method, ib_action, ib_segue_action, other_method, subscript]
+    - [deinitializer]
+
+# The claude wire format nests three deep; the DTOs mirror it so the schema
+# stays readable in one place.
+nesting:
+  type_level: 3
+
+identifier_name:
+  excluded:
+    # SwiftLint's own default, which naming an exclusion list would drop
+    - id
+    # Cartesian coordinate in the waveform geometry
+    - x
+
+# Raised to what this code actually is, not lowered to hide it: the claude
+# subprocess setup and the Markdown block assembler are each one linear
+# procedure, and cutting them into pieces would only spread the state around.
+function_body_length:
+  warning: 75
+closure_body_length:
+  warning: 40
+type_body_length:
+  warning: 330
+file_length:
+  warning: 500
+
+# These files hold a group of small related types, not one namesake type.
+file_name:
+  excluded:
+    - SampleData.swift
+    - WaveformViews.swift
+
+# An empty closure is how SwiftUI says "no handler": Button("OK") {}, a preview
+# with no callback, a default no-op parameter. An empty function body still has
+# to say why it is empty.
+no_empty_block:
+  disabled_block_types: [closure_blocks]
+
+# Agent.swift and SampleData.swift hold prompt and fixture text verbatim, so
+# there the disable covers the whole file on purpose.
+blanket_disable_command:
+  always_blanket_disable:
+    - line_length
+    - indentation_width
+
+disabled_rules:
+  # --- Contradicts another rule ---
+  # Conflicts with opening_brace. Swift keeps the brace on the same line.
+  - contrasted_opening_brace
+  # Conflicts with redundant_type_annotation. Swift infers types.
+  - explicit_type_interface
+  # Conflicts with redundant_self.
+  - explicit_self
+  # Conflicts with shorthand_optional_binding, which is what shadows the name.
+  - variable_shadowing
+  # Contradicts explicit_enum_raw_value, which wins here: Status and the
+  # CodingKeys are persisted, so a spelled-out raw value keeps renaming a case
+  # from silently changing the on-disk format.
+  - redundant_string_enum_value
+  # Contradicts extension_access_modifier, which wins: when every member of an
+  # extension shares one access level, stating it once on the extension reads
+  # better than repeating it on each member.
+  - no_extension_access_modifier
+
+  # --- Contradicts the Swift idiom ---
+  # Superseded by the Swift API Design Guidelines.
+  - prefixed_toplevel_constant
+  # Dropping async off a method that happens not to await today breaks every
+  # caller and removes the actor hop the signature promises.
+  - async_without_await
+  # String(decoding:as:) is chosen deliberately: the bytes are always UTF-8,
+  # and the failable initializer would add an optional nobody unwraps.
+  - optional_data_string_conversion
+  # NSPasteboard.writeObjects takes NSPasteboardWriting; the NSURL bridge is
+  # how AppKit accepts a file URL.
+  - legacy_objc_type
+  # A deinit that releases nothing is noise.
+  - required_deinit
+
+  # --- Contradicts what this project does on purpose ---
+  # An app target ships no public API to annotate.
+  - explicit_acl
+  - explicit_top_level_acl
+  # SwiftUI layout is written in literals. Naming every inset reads worse.
+  - no_magic_numbers
+  # CONTRIBUTING groups a view with its model and its helpers in one file.
+  - one_declaration_per_file
+  - file_types_order
+  - no_grouping_extension
+  # The project writes no doc comments; the why lives in the commit message.
+  - missing_docs
+  # fileprivate is exact here: the download delegate lives in the same file and
+  # needs these, while nothing outside the file may touch them.
+  - strict_fileprivate
+  # A default argument is the API here: `bucketCount` and `entries` have one
+  # obvious value that every caller but one wants.
+  - discouraged_default_parameter
+  # These describe a JSON wire format, not an API this project designs: a
+  # missing field decodes to nil, and nil means "not computed yet" where an
+  # empty array would mean "computed, and empty".
+  - discouraged_optional_boolean
+  - discouraged_optional_collection
+
+  # --- Needs `swiftlint analyze` and a compiler log ---
+  - unused_declaration
+  - unused_import
