@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build (Release)
+    runs-on: macos-26
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: SwiftLint
+        env:
+          SWIFTLINT_VERSION: 0.65.0
+          SWIFTLINT_SHA256: d6cb0aa7a2f5f1ef306fc9e37bcb54dc9a26facc8f7784ac0c3dd3eccf5c6ba6
+        run: |
+          curl -fsSL -o swiftlint.zip \
+            "https://github.com/realm/SwiftLint/releases/download/${SWIFTLINT_VERSION}/portable_swiftlint.zip"
+          echo "${SWIFTLINT_SHA256}  swiftlint.zip" | shasum -a 256 -c -
+          unzip -o -q swiftlint.zip -d swiftlint-bin
+          ./swiftlint-bin/swiftlint lint --strict --reporter github-actions-logging
+
+      - name: Show the toolchain
+        run: xcodebuild -version
+
+      - name: Resolve package dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project Longhand.xcodeproj \
+            -scheme Longhand \
+            -derivedDataPath build
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -project Longhand.xcodeproj \
+            -scheme Longhand \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO

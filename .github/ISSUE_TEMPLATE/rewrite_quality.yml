@@ -1,0 +1,49 @@
+name: Rewrite quality
+description: The rewrite or the title came out wrong
+labels: ["rewrite"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for output that is wrong rather than broken: a rewrite that summarizes, answers, or changes language, or a title that misses the topic.
+
+        Post transcripts you are comfortable making public. Shorten or invent one that reproduces the same problem if you would rather not share the original.
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which agent
+      options:
+        - Clean up (the rewritten document)
+        - Title (the sidebar label)
+    validations:
+      required: true
+
+  - type: textarea
+    id: transcript
+    attributes:
+      label: Transcript
+      description: What Whisper produced, before the rewrite. Wrap it in backticks to keep the formatting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Longhand's output
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: The output you expected
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: injection
+    attributes:
+      label: Category
+      options:
+        - label: The transcript contained something that reads as an instruction, and the model followed it.

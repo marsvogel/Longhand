@@ -1,0 +1,73 @@
+name: Bug report
+description: Something in Longhand does not work as described
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report security issues here. Open a [private security advisory](https://github.com/marsvogel/Longhand/security/advisories/new) instead.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you see, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Press ⌘R
+        2. Dictate "…"
+        3. Press ⌘R again
+        4. …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Which stage fails
+      options:
+        - Recording
+        - Transcription
+        - Rewrite
+        - Sidebar or detail view
+        - Model download
+        - Build
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "26.5"
+    validations:
+      required: true
+
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude Code version
+      description: Run `claude --version`. Leave empty if the bug is not in the rewrite.
+      placeholder: "2.1.217"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output
+      description: Anything Longhand logged in Console.app. Pasted text is formatted as code — no backticks needed.
+      render: text
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed anything private from the transcripts and logs above.
+          required: true
