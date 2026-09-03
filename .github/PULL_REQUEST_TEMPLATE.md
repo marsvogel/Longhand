@@ -2,7 +2,7 @@
 
 <!-- One or two sentences paraphrasing the change. -->
 
-## What changes for someone using Longhand
+## What changes for someone using Kladde
 
 <!-- In words a user understands. Delete this section for internal-only changes. -->
 
@@ -11,7 +11,7 @@
 - [ ] The app builds and I ran it
 - [ ] Commits follow [the commit style](../CONTRIBUTING.md#commits)
 
-<!-- Delete the next block unless this pull request touches Longhand/Rewriting/Agent.swift -->
+<!-- Delete the next block unless this pull request touches Kladde/Rewriting/Agent.swift -->
 
 ## Prompt changes
 

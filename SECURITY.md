@@ -4,7 +4,7 @@
 
 Report security issues privately through GitHub, not in a public issue:
 
-**[Open a security advisory](https://github.com/marsvogel/Longhand/security/advisories/new)**
+**[Open a security advisory](https://github.com/marsvogel/Kladde/security/advisories/new)**
 
 You get a confidential thread with the maintainer. Nothing is public until a
 fix ships.
@@ -12,7 +12,7 @@ fix ships.
 Include what you need to make the problem reproducible: the steps, the input,
 the macOS and Claude Code versions, and what you expected instead.
 
-Expect a first reply within 7 days. Longhand is a personal project, so a fix
+Expect a first reply within 7 days. Kladde is a personal project, so a fix
 takes as long as it takes — you will hear where it stands rather than nothing.
 
 ## Supported versions
@@ -20,10 +20,10 @@ takes as long as it takes — you will hear where it stands rather than nothing.
 The latest commit on `main` is the only supported version. There are no
 tagged releases and no backports.
 
-## What Longhand does with your data
+## What Kladde does with your data
 
 Recordings, transcripts, and rewrites are written to
-`~/Library/Application Support/Longhand` and stay there. There is no
+`~/Library/Application Support/Kladde` and stay there. There is no
 analytics, no account, and no telemetry.
 
 The rewrite is the only step that leaves your Mac. The transcript goes to the
@@ -32,12 +32,12 @@ subscription. The audio never leaves the machine.
 
 ## Threat model
 
-These are the places worth looking, and what Longhand already does about them.
+These are the places worth looking, and what Kladde already does about them.
 
 ### Untrusted transcript text
 
 A dictation can contain sentences that read as instructions — by accident or
-because someone dictated them on purpose. Longhand treats every transcript as
+because someone dictated them on purpose. Kladde treats every transcript as
 data:
 
 - The transcript arrives on stdin inside a `<transcript>` element, never in
@@ -51,7 +51,7 @@ A transcript that changes the model's behaviour anyway is a bug. Report it.
 
 ### The `claude` subprocess
 
-Longhand runs `claude` locked down to a text transformation:
+Kladde runs `claude` locked down to a text transformation:
 
 - `--tools ""` — no built-in tools
 - `--strict-mcp-config` — no MCP servers
@@ -65,19 +65,19 @@ repository `CLAUDE.md` can shape the answer.
 
 ### Executable resolution
 
-Longhand resolves the `claude` binary at runtime and falls back to a
+Kladde resolves the `claude` binary at runtime and falls back to a
 login-shell lookup. A `PATH` an attacker controls is therefore a `claude` an
 attacker controls. This is the same trust boundary as typing `claude` in your
 own terminal.
 
 ### No sandbox
 
-Longhand is not sandboxed, because it launches `claude` from your `PATH`. It
+Kladde is not sandboxed, because it launches `claude` from your `PATH`. It
 runs with your full user privileges.
 
 ### Model download
 
-On first launch Longhand downloads Whisper `large-v3-turbo` over HTTPS from
+On first launch Kladde downloads Whisper `large-v3-turbo` over HTTPS from
 Hugging Face. The download is not checksum-verified; it is trusted on TLS
 alone. The whisper.cpp framework itself *is* pinned by version and SHA-256 in
 `Packages/CWhisper/Package.swift`.

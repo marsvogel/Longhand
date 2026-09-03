@@ -13,7 +13,7 @@ last-updated: 2026-09-02
 
 # AI Disclosure
 
-Longhand is developed with AI coding tools. This document discloses how AI is
+Kladde is developed with AI coding tools. This document discloses how AI is
 involved, which tooling is used, and what human oversight applies. It describes
 provenance only — it makes no statement about code quality or security.
 
@@ -35,13 +35,13 @@ with the W3C AI Content Disclosure vocabulary):
 
 - **Claude Code** (Anthropic), running Anthropic Claude models. The app itself
   was generated with Claude Code; its tooling, CI, and documentation are as well.
-- **The app icon** (`Longhand/AppIcon.icon/Assets/icon.png`) was generated with
+- **The app icon** (`Kladde/AppIcon.icon/Assets/icon.png`) was generated with
   OpenAI's `gpt-image`. It arrived carrying C2PA Content Credentials that named
   the generator; those were stripped along with every other metadata chunk when
   the file was recompressed, so this document is now the only record of where it
   came from.
 
-Note that this is separate from what the app *does* at runtime: Longhand sends
+Note that this is separate from what the app *does* at runtime: Kladde sends
 each transcript to the Anthropic API through your own local `claude` CLI. The
 [README](README.md#privacy) and [SECURITY.md](SECURITY.md) describe that path.
 
@@ -52,7 +52,7 @@ each transcript to the Anthropic API through your own local `claude` CLI. The
 - CI runs on every pull request and push to `main`
   (`.github/workflows/build.yml`): SwiftLint `--strict` (pinned and
   checksum-verified) and a Release build.
-- There is no test suite. Longhand is a small app whose behaviour lives in
+- There is no test suite. Kladde is a small app whose behaviour lives in
   audio capture, a C library, and a subprocess; [CONTRIBUTING.md](CONTRIBUTING.md#tests)
   explains what is checked by hand instead.
 - [@marsvogel](https://github.com/marsvogel) is the sole maintainer and code

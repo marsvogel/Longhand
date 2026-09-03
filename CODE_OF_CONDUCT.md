@@ -43,9 +43,9 @@ We agree to restrict the following behaviors in our community. Instances, threat
 
 Tensions can occur between community members even when they are trying their best to collaborate. Not every conflict represents a code of conduct violation, and this Code of Conduct reinforces encouraged behaviors and norms that can help avoid conflicts and minimize harm.
 
-When an incident does occur, it is important to report it promptly. To report a possible violation, **[open a private report](https://github.com/marsvogel/Longhand/security/advisories/new)**. GitHub labels that form for security advisories; it is also the confidential channel for conduct reports, because only you and the maintainer can read what you write there. Do not report a violation in a public issue or pull request.
+When an incident does occur, it is important to report it promptly. To report a possible violation, **[open a private report](https://github.com/marsvogel/Kladde/security/advisories/new)**. GitHub labels that form for security advisories; it is also the confidential channel for conduct reports, because only you and the maintainer can read what you write there. Do not report a violation in a public issue or pull request.
 
-Longhand has one maintainer, who acts as the sole Community Moderator. Where a report concerns the maintainer, report it to GitHub instead, through [Report abuse](https://github.com/contact/report-abuse).
+Kladde has one maintainer, who acts as the sole Community Moderator. Where a report concerns the maintainer, report it to GitHub instead, through [Report abuse](https://github.com/contact/report-abuse).
 
 Community Moderators take reports of violations seriously and will make every effort to respond in a timely manner. They will investigate all reports of code of conduct violations, reviewing messages, logs, and recordings, or interviewing witnesses and other participants. Community Moderators will keep investigation and enforcement actions as transparent as possible while prioritizing safety and confidentiality. In order to honor these values, enforcement actions are carried out in private with the involved parties, but communicating to the whole community may be part of a mutually agreed upon resolution.
 

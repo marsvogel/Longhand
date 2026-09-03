@@ -1,4 +1,4 @@
-Longhand
+Kladde
 Copyright (c) 2026 Christopher Bischoff
 
 This product bundles and downloads third-party components. Their licenses
@@ -8,7 +8,7 @@ follow.
 whisper.cpp
 --------------------------------------------------------------------------
 
-Longhand links the whisper.cpp XCFramework, fetched at build time from
+Kladde links the whisper.cpp XCFramework, fetched at build time from
 https://github.com/ggml-org/whisper.cpp
 
 MIT License
@@ -37,7 +37,7 @@ SOFTWARE.
 Whisper large-v3-turbo
 --------------------------------------------------------------------------
 
-Longhand downloads the ggml and Core ML builds of OpenAI's Whisper
+Kladde downloads the ggml and Core ML builds of OpenAI's Whisper
 large-v3-turbo on first launch, from
 https://huggingface.co/ggerganov/whisper.cpp
 

@@ -30,7 +30,7 @@ body:
   - type: textarea
     id: actual
     attributes:
-      label: Longhand's output
+      label: Kladde's output
     validations:
       required: true
 

@@ -1,17 +1,17 @@
 name: Feature request
-description: Suggest a change to what Longhand does
+description: Suggest a change to what Kladde does
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Longhand is deliberately small and feature-complete for what it does. Read [what gets merged](https://github.com/marsvogel/Longhand/blob/main/CONTRIBUTING.md#what-this-project-is) before you write this up — it will save you time if the answer is no.
+        Kladde is deliberately small and feature-complete for what it does. Read [what gets merged](https://github.com/marsvogel/Kladde/blob/main/CONTRIBUTING.md#what-this-project-is) before you write this up — it will save you time if the answer is no.
 
   - type: textarea
     id: problem
     attributes:
       label: The problem
-      description: What are you trying to do that Longhand makes hard today?
+      description: What are you trying to do that Kladde makes hard today?
     validations:
       required: true
 
