@@ -3,7 +3,7 @@
 # contradicts something this project does on purpose.
 
 included:
-  - Longhand
+  - Kladde
   - Packages
 
 opt_in_rules:

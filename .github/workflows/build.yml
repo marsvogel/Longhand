@@ -43,15 +43,15 @@ jobs:
       - name: Resolve package dependencies
         run: |
           xcodebuild -resolvePackageDependencies \
-            -project Longhand.xcodeproj \
-            -scheme Longhand \
+            -project Kladde.xcodeproj \
+            -scheme Kladde \
             -derivedDataPath build
 
       - name: Build
         run: |
           xcodebuild build \
-            -project Longhand.xcodeproj \
-            -scheme Longhand \
+            -project Kladde.xcodeproj \
+            -scheme Kladde \
             -configuration Release \
             -destination 'platform=macOS,arch=arm64' \
             -derivedDataPath build \

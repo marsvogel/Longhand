@@ -1,11 +1,11 @@
-# Contributing to Longhand
+# Contributing to Kladde
 
-Thanks for looking. This page tells you what Longhand accepts, how to build
+Thanks for looking. This page tells you what Kladde accepts, how to build
 it, and what a change should look like.
 
 ## What this project is
 
-Longhand is a personal project, kept deliberately small. It does one thing:
+Kladde is a personal project, kept deliberately small. It does one thing:
 record, transcribe on-device, rewrite through Claude Code. It is
 feature-complete for that.
 
@@ -39,15 +39,15 @@ Requirements:
 Build and run:
 
 ```sh
-git clone https://github.com/marsvogel/Longhand.git
-cd Longhand
-open Longhand.xcodeproj
+git clone https://github.com/marsvogel/Kladde.git
+cd Kladde
+open Kladde.xcodeproj
 ```
 
 Or from the command line:
 
 ```sh
-xcodebuild -project Longhand.xcodeproj -scheme Longhand -configuration Debug build
+xcodebuild -project Kladde.xcodeproj -scheme Kladde -configuration Debug build
 ```
 
 The project builds without an Apple Developer account: it signs to run
@@ -55,7 +55,7 @@ locally. Swift Package Manager fetches the whisper.cpp XCFramework on the
 first build, so the first build needs a network connection.
 
 On first launch the app downloads Whisper `large-v3-turbo` to
-`~/Library/Application Support/Longhand/Models`. Your dictations land in the
+`~/Library/Application Support/Kladde/Models`. Your dictations land in the
 same directory — delete it to start from a clean state.
 
 ## Project layout
@@ -65,13 +65,13 @@ its helpers live together.
 
 | Directory | Holds |
 | --- | --- |
-| `Longhand/App` | App entry point, commands, delegate |
-| `Longhand/Audio` | Recording, playback, sample buffers |
-| `Longhand/Transcription` | Whisper inference and model download |
-| `Longhand/Rewriting` | Agent configurations and the `claude` bridge |
-| `Longhand/Model` | Dictation entries and the store |
-| `Longhand/Storage` | On-disk locations and the archive format |
-| `Longhand/Views` | SwiftUI views, split by sidebar / detail / components |
+| `Kladde/App` | App entry point, commands, delegate |
+| `Kladde/Audio` | Recording, playback, sample buffers |
+| `Kladde/Transcription` | Whisper inference and model download |
+| `Kladde/Rewriting` | Agent configurations and the `claude` bridge |
+| `Kladde/Model` | Dictation entries and the store |
+| `Kladde/Storage` | On-disk locations and the archive format |
+| `Kladde/Views` | SwiftUI views, split by sidebar / detail / components |
 | `Packages/CWhisper` | Local SPM package wrapping the whisper.cpp framework |
 
 ## Linting
@@ -99,7 +99,7 @@ build.
 
 There are none, on purpose.
 
-What Longhand does lives almost entirely outside what a unit test can reach: a
+What Kladde does lives almost entirely outside what a unit test can reach: a
 microphone, a C library through a bridging header, a subprocess, and a language
 model whose output is not deterministic. A test suite here would assert against
 mocks of all four and still tell you nothing about whether a dictation comes
@@ -122,7 +122,7 @@ Swift API Design Guidelines, plus what the existing code already does:
 
 - **Comments carry the why.** The code says what it does. A comment exists
   where a decision needs a reason — a workaround, a trade-off, an ordering
-  constraint. Read `Longhand/Rewriting/ClaudeCLI.swift` for the register.
+  constraint. Read `Kladde/Rewriting/ClaudeCLI.swift` for the register.
 - **Swift concurrency, not locks**, unless a lock is measurably the right
   answer. The project builds under strict concurrency checking.
 - **No new dependencies** without a reason in the pull request.
@@ -133,7 +133,7 @@ Swift API Design Guidelines, plus what the existing code already does:
 
 ## Changing an agent prompt
 
-`Longhand/Rewriting/Agent.swift` holds the system prompts. Two rules:
+`Kladde/Rewriting/Agent.swift` holds the system prompts. Two rules:
 
 1. **The two agents repeat on purpose.** They do not share a base prompt.
    Change one without touching the other unless the change belongs in both.

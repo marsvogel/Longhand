@@ -1,11 +1,11 @@
 name: Bug report
-description: Something in Longhand does not work as described
+description: Something in Kladde does not work as described
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Do not report security issues here. Open a [private security advisory](https://github.com/marsvogel/Longhand/security/advisories/new) instead.
+        Do not report security issues here. Open a [private security advisory](https://github.com/marsvogel/Kladde/security/advisories/new) instead.
 
   - type: textarea
     id: what-happened
@@ -61,7 +61,7 @@ body:
     id: logs
     attributes:
       label: Console output
-      description: Anything Longhand logged in Console.app. Pasted text is formatted as code — no backticks needed.
+      description: Anything Kladde logged in Console.app. Pasted text is formatted as code — no backticks needed.
       render: text
 
   - type: checkboxes
